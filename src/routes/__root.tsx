@@ -29,19 +29,31 @@ export const Route = createRootRoute({
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Lovable App" },
-      { name: "description", content: "Lovable Generated Project" },
-      { name: "author", content: "Lovable" },
-      { property: "og:title", content: "Lovable App" },
-      { property: "og:description", content: "Lovable Generated Project" },
+      { title: "Thathaas Thattukada – Authentic Kerala Street Food in Sharjah" },
+      { name: "description", content: "Thathaas Thattukada serves authentic Kerala street food 24/7 in Al Qasimia, Sharjah. Enjoy biryani, porotta, cutlets, karak tea & more at budget-friendly prices." },
+      { name: "author", content: "Thathaas Thattukada" },
+      { property: "og:title", content: "Thathaas Thattukada – Kerala Street Food, Sharjah" },
+      { property: "og:description", content: "Authentic Kerala street food open 24 hours. Biryani, porotta, snacks & more in Al Qasimia, Sharjah." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary" },
-      { name: "twitter:site", content: "@Lovable" },
     ],
     links: [
       {
         rel: "stylesheet",
         href: appCss,
+      },
+      {
+        rel: "preconnect",
+        href: "https://fonts.googleapis.com",
+      },
+      {
+        rel: "preconnect",
+        href: "https://fonts.gstatic.com",
+        crossOrigin: "anonymous",
+      },
+      {
+        rel: "stylesheet",
+        href: "https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800;900&family=DM+Sans:wght@400;500;600;700&display=swap",
       },
     ],
   }),
