@@ -18,11 +18,6 @@ import {
 import { useState, useEffect } from "react";
 
 import heroBg from "../assets/hero-bg.jpg";
-import menuTea from "../assets/menu-tea.jpg";
-import menuCutlet from "../assets/menu-cutlet.jpg";
-import menuPorotta from "../assets/menu-porotta.jpg";
-import menuBiryani from "../assets/menu-biryani.jpg";
-import menuSnacks from "../assets/menu-snacks.jpg";
 
 export const Route = createFileRoute("/")({
   component: Index,
