@@ -1,13 +1,38 @@
 import { useState, useMemo } from "react";
 import { Search, X, UtensilsCrossed, Phone } from "lucide-react";
 
-type MenuItem = { name: string; price: string; arabic?: string };
-type MenuCategory = { category: string; emoji: string; items: MenuItem[] };
+import catTea from "../assets/cat-tea.jpg";
+import catBreakfast from "../assets/cat-breakfast.jpg";
+import catSnacks from "../assets/cat-snacks.jpg";
+import catSandwich from "../assets/cat-sandwich.jpg";
+import catChicken from "../assets/cat-chicken.jpg";
+import catMutton from "../assets/cat-mutton.jpg";
+import catBeef from "../assets/cat-beef.jpg";
+import catFish from "../assets/cat-fish.jpg";
+import catDuck from "../assets/cat-duck.jpg";
+import catEgg from "../assets/cat-egg.jpg";
+import catVeg from "../assets/cat-veg.jpg";
+import catBiriyani from "../assets/cat-biriyani.jpg";
+import catKerala from "../assets/cat-kerala.jpg";
+import catDinner from "../assets/cat-dinner.jpg";
+import catFriedrice from "../assets/cat-friedrice.jpg";
+import catNoodles from "../assets/cat-noodles.jpg";
+import catSoup from "../assets/cat-soup.jpg";
+import catJuice from "../assets/cat-juice.jpg";
+import catSpecialJuice from "../assets/cat-special-juice.jpg";
+import catMojito from "../assets/cat-mojito.jpg";
+import catMilkshake from "../assets/cat-milkshake.jpg";
+import catAvilmilk from "../assets/cat-avilmilk.jpg";
+import catBurger from "../assets/cat-burger.jpg";
+import catClub from "../assets/cat-club.jpg";
+import catIcecream from "../assets/cat-icecream.jpg";
+
+type MenuItem = { name: string; price: string };
+type MenuCategory = { category: string; emoji: string; img: string; items: MenuItem[] };
 
 const menuData: MenuCategory[] = [
   {
-    category: "Tea & Coffee",
-    emoji: "☕",
+    category: "Tea & Coffee", emoji: "☕", img: catTea,
     items: [
       { name: "Karak Tea", price: "1.00" },
       { name: "Green Tea", price: "1.50" },
@@ -19,8 +44,7 @@ const menuData: MenuCategory[] = [
     ],
   },
   {
-    category: "Breakfast",
-    emoji: "🍳",
+    category: "Breakfast", emoji: "🍳", img: catBreakfast,
     items: [
       { name: "Ghee Roast", price: "6.00" },
       { name: "Vellapam", price: "1.50" },
@@ -46,8 +70,7 @@ const menuData: MenuCategory[] = [
     ],
   },
   {
-    category: "Snacks",
-    emoji: "🍿",
+    category: "Snacks", emoji: "🍿", img: catSnacks,
     items: [
       { name: "Banana Fry", price: "-" },
       { name: "Uzhunnu Vada", price: "-" },
@@ -80,8 +103,7 @@ const menuData: MenuCategory[] = [
     ],
   },
   {
-    category: "Porotta Sandwich",
-    emoji: "🥪",
+    category: "Porotta Sandwich", emoji: "🥪", img: catSandwich,
     items: [
       { name: "Chicken", price: "4.00" },
       { name: "Oman Chips / Cheese Porotta", price: "4.00" },
@@ -92,8 +114,7 @@ const menuData: MenuCategory[] = [
     ],
   },
   {
-    category: "Chicken Dish",
-    emoji: "🍗",
+    category: "Chicken Dish", emoji: "🍗", img: catChicken,
     items: [
       { name: "Chicken Chukka", price: "12.00" },
       { name: "Chicken Chilly", price: "13.00" },
@@ -124,8 +145,7 @@ const menuData: MenuCategory[] = [
     ],
   },
   {
-    category: "Mutton Dish",
-    emoji: "🍖",
+    category: "Mutton Dish", emoji: "🍖", img: catMutton,
     items: [
       { name: "Mutton Varattiyathu", price: "18.00" },
       { name: "Mutton Pepper", price: "18.00" },
@@ -135,8 +155,7 @@ const menuData: MenuCategory[] = [
     ],
   },
   {
-    category: "Beef Dish",
-    emoji: "🥩",
+    category: "Beef Dish", emoji: "🥩", img: catBeef,
     items: [
       { name: "Beef Chilly Dry", price: "16.00" },
       { name: "Beef Coconut", price: "15.00" },
@@ -147,8 +166,7 @@ const menuData: MenuCategory[] = [
     ],
   },
   {
-    category: "Fish Dish",
-    emoji: "🐟",
+    category: "Fish Dish", emoji: "🐟", img: catFish,
     items: [
       { name: "Fish Fry", price: "ASP" },
       { name: "Prawns Roast", price: "ASP" },
@@ -160,16 +178,14 @@ const menuData: MenuCategory[] = [
     ],
   },
   {
-    category: "Duck Dish",
-    emoji: "🦆",
+    category: "Duck Dish", emoji: "🦆", img: catDuck,
     items: [
       { name: "Duck Roast", price: "20.00" },
       { name: "Duck Masala", price: "20.00" },
     ],
   },
   {
-    category: "Egg Dish",
-    emoji: "🥚",
+    category: "Egg Dish", emoji: "🥚", img: catEgg,
     items: [
       { name: "Egg Masala", price: "8.00" },
       { name: "Egg Burji", price: "8.00" },
@@ -178,8 +194,7 @@ const menuData: MenuCategory[] = [
     ],
   },
   {
-    category: "Vegetable",
-    emoji: "🥬",
+    category: "Vegetable", emoji: "🥬", img: catVeg,
     items: [
       { name: "Veg Stew", price: "8.00" },
       { name: "Paneer Butter Masala", price: "12.00" },
@@ -200,8 +215,7 @@ const menuData: MenuCategory[] = [
     ],
   },
   {
-    category: "Biriyani",
-    emoji: "🍚",
+    category: "Biriyani", emoji: "🍚", img: catBiriyani,
     items: [
       { name: "Chi. Fry Biriyani", price: "12.00" },
       { name: "Ghee Rice", price: "7.00" },
@@ -218,8 +232,7 @@ const menuData: MenuCategory[] = [
     ],
   },
   {
-    category: "Kerala Special",
-    emoji: "🌴",
+    category: "Kerala Special", emoji: "🌴", img: catKerala,
     items: [
       { name: "Pothi Poratta", price: "14.00" },
       { name: "Kanji", price: "10.00" },
@@ -228,8 +241,8 @@ const menuData: MenuCategory[] = [
       { name: "Ghee Rice with Beef Curry", price: "14.00" },
       { name: "Pothi Choru", price: "14.00" },
       { name: "Paal Kappa (Chicken/Beef)", price: "13/18" },
-      { name: "Paal Parotta (Chicken/Beef/Egg)", price: "16/18/14" },
-      { name: "Kothu Porotta (Chicken/Beef/Egg)", price: "13/14/11" },
+      { name: "Paal Parotta (Chi./Beef/Egg)", price: "16/18/14" },
+      { name: "Kothu Porotta (Chi./Beef/Egg)", price: "13/14/11" },
       { name: "Ummachi Kozhi", price: "25.00" },
       { name: "Chicken Kanthari", price: "15.00" },
       { name: "Beef Kanthari", price: "16.00" },
@@ -237,13 +250,11 @@ const menuData: MenuCategory[] = [
       { name: "Neypathil Poth Varattiyathu", price: "18.00" },
       { name: "Kunji Pathil", price: "13.00" },
       { name: "Motta / Barik Set", price: "-" },
-      { name: "Ottupathilum Pothin Kaalam", price: "-" },
-      { name: "Muttayappam with Beef & Chicken", price: "18/16" },
+      { name: "Muttayappam with Beef/Chicken", price: "18/16" },
     ],
   },
   {
-    category: "Dinner Special",
-    emoji: "🌙",
+    category: "Dinner Special", emoji: "🌙", img: catDinner,
     items: [
       { name: "Poricha Pathil", price: "-" },
       { name: "Ari Dosa", price: "-" },
@@ -257,8 +268,7 @@ const menuData: MenuCategory[] = [
     ],
   },
   {
-    category: "Fried Rice",
-    emoji: "🍛",
+    category: "Fried Rice", emoji: "🍛", img: catFriedrice,
     items: [
       { name: "Chi. Fried Rice", price: "13.00" },
       { name: "Egg Fried Rice", price: "11.00" },
@@ -270,8 +280,7 @@ const menuData: MenuCategory[] = [
     ],
   },
   {
-    category: "Noodles",
-    emoji: "🍜",
+    category: "Noodles", emoji: "🍜", img: catNoodles,
     items: [
       { name: "Chicken Noodles", price: "13.00" },
       { name: "Beef Noodles", price: "16.00" },
@@ -283,8 +292,7 @@ const menuData: MenuCategory[] = [
     ],
   },
   {
-    category: "Soup",
-    emoji: "🍲",
+    category: "Soup", emoji: "🍲", img: catSoup,
     items: [
       { name: "Chicken Soup", price: "10.00" },
       { name: "Manchow Soup", price: "12.00" },
@@ -296,8 +304,7 @@ const menuData: MenuCategory[] = [
     ],
   },
   {
-    category: "Fresh Juices",
-    emoji: "🧃",
+    category: "Fresh Juices", emoji: "🧃", img: catJuice,
     items: [
       { name: "Avocado", price: "7/9/11" },
       { name: "Banana", price: "4/6/8" },
@@ -321,8 +328,7 @@ const menuData: MenuCategory[] = [
     ],
   },
   {
-    category: "Special Juices",
-    emoji: "🥤",
+    category: "Special Juices", emoji: "🥤", img: catSpecialJuice,
     items: [
       { name: "Awar Al Khalb", price: "10.00" },
       { name: "Abood", price: "10.00" },
@@ -338,8 +344,7 @@ const menuData: MenuCategory[] = [
     ],
   },
   {
-    category: "Mojito",
-    emoji: "🍹",
+    category: "Mojito", emoji: "🍹", img: catMojito,
     items: [
       { name: "Blue Lime", price: "11.00" },
       { name: "Passion Fruit", price: "11.00" },
@@ -348,8 +353,7 @@ const menuData: MenuCategory[] = [
     ],
   },
   {
-    category: "Crush Milk Shake",
-    emoji: "🥛",
+    category: "Crush Milk Shake", emoji: "🥛", img: catMilkshake,
     items: [
       { name: "Cold Coffee", price: "12.00" },
       { name: "Lotus Milk Shake", price: "12.00" },
@@ -361,8 +365,7 @@ const menuData: MenuCategory[] = [
     ],
   },
   {
-    category: "Avil Milk Special",
-    emoji: "🍌",
+    category: "Avil Milk Special", emoji: "🍌", img: catAvilmilk,
     items: [
       { name: "Normal", price: "8.00" },
       { name: "Kids", price: "10.00" },
@@ -379,8 +382,7 @@ const menuData: MenuCategory[] = [
     ],
   },
   {
-    category: "Burger",
-    emoji: "🍔",
+    category: "Burger", emoji: "🍔", img: catBurger,
     items: [
       { name: "Beef Burger", price: "8.00" },
       { name: "Veg. Burger", price: "8.00" },
@@ -392,8 +394,7 @@ const menuData: MenuCategory[] = [
     ],
   },
   {
-    category: "Club Sandwich",
-    emoji: "🥪",
+    category: "Club Sandwich", emoji: "🥪", img: catClub,
     items: [
       { name: "Zinker Club", price: "14.00" },
       { name: "Chicken Club", price: "12.00" },
@@ -401,8 +402,7 @@ const menuData: MenuCategory[] = [
     ],
   },
   {
-    category: "Ice Cream",
-    emoji: "🍨",
+    category: "Ice Cream", emoji: "🍨", img: catIcecream,
     items: [
       { name: "Thathas Royal Mix Ice Cream", price: "15.00" },
     ],
@@ -415,15 +415,16 @@ export default function MenuSection() {
 
   const filtered = useMemo(() => {
     const q = search.toLowerCase().trim();
+    if (!q) return menuData;
     return menuData
-      .map((cat) => {
-        const matchingItems = cat.items.filter(
+      .map((cat) => ({
+        ...cat,
+        items: cat.items.filter(
           (item) =>
             item.name.toLowerCase().includes(q) ||
             cat.category.toLowerCase().includes(q)
-        );
-        return { ...cat, items: matchingItems };
-      })
+        ),
+      }))
       .filter((cat) => cat.items.length > 0);
   }, [search]);
 
@@ -455,25 +456,16 @@ export default function MenuSection() {
         {/* Search */}
         <div className="mx-auto mt-8 max-w-md">
           <div className="relative">
-            <Search
-              size={18}
-              className="absolute left-4 top-1/2 -translate-y-1/2 text-white/40"
-            />
+            <Search size={18} className="absolute left-4 top-1/2 -translate-y-1/2 text-white/40" />
             <input
               type="text"
               value={search}
-              onChange={(e) => {
-                setSearch(e.target.value);
-                setActiveCategory(null);
-              }}
+              onChange={(e) => { setSearch(e.target.value); setActiveCategory(null); }}
               placeholder="Search menu… e.g. biriyani, porotta, juice"
               className="w-full rounded-full border border-white/10 bg-white/5 py-3 pl-11 pr-10 text-sm text-white placeholder-white/30 outline-none backdrop-blur-sm transition focus:border-warm-accent/50 focus:ring-1 focus:ring-warm-accent/30"
             />
             {search && (
-              <button
-                onClick={() => setSearch("")}
-                className="absolute right-4 top-1/2 -translate-y-1/2 text-white/40 hover:text-white"
-              >
+              <button onClick={() => setSearch("")} className="absolute right-4 top-1/2 -translate-y-1/2 text-white/40 hover:text-white">
                 <X size={16} />
               </button>
             )}
@@ -495,11 +487,7 @@ export default function MenuSection() {
           {(search ? filtered : menuData).map((cat) => (
             <button
               key={cat.category}
-              onClick={() =>
-                setActiveCategory(
-                  activeCategory === cat.category ? null : cat.category
-                )
-              }
+              onClick={() => setActiveCategory(activeCategory === cat.category ? null : cat.category)}
               className={`shrink-0 rounded-full px-4 py-1.5 text-xs font-semibold transition ${
                 activeCategory === cat.category
                   ? "bg-warm-accent text-warm-dark"
@@ -515,34 +503,44 @@ export default function MenuSection() {
         {displayed.length === 0 ? (
           <div className="mt-16 text-center">
             <UtensilsCrossed size={40} className="mx-auto text-white/20" />
-            <p className="mt-4 text-white/40">
-              No items found for "{search}"
-            </p>
+            <p className="mt-4 text-white/40">No items found for "{search}"</p>
           </div>
         ) : (
           <div className="mt-8 space-y-10">
             {displayed.map((cat) => (
-              <div key={cat.category}>
-                <h3 className="mb-4 flex items-center gap-2 border-b border-white/10 pb-2 text-lg font-bold text-white">
-                  <span className="text-xl">{cat.emoji}</span>
-                  {cat.category}
-                  <span className="ml-auto text-xs font-normal text-white/30">
-                    {cat.items.length} items
-                  </span>
-                </h3>
-                <div className="grid gap-2 sm:grid-cols-2 lg:grid-cols-3">
+              <div key={cat.category} className="overflow-hidden rounded-2xl bg-white/[0.03]">
+                {/* Category header with image */}
+                <div className="relative flex items-end overflow-hidden h-32 sm:h-40">
+                  <img
+                    src={cat.img}
+                    alt={cat.category}
+                    loading="lazy"
+                    width={512}
+                    height={512}
+                    className="absolute inset-0 h-full w-full object-cover"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent" />
+                  <div className="relative z-10 flex w-full items-end justify-between px-5 pb-4">
+                    <h3 className="flex items-center gap-2 text-xl font-bold text-white">
+                      <span className="text-2xl">{cat.emoji}</span>
+                      {cat.category}
+                    </h3>
+                    <span className="rounded-full bg-warm-accent/20 px-3 py-0.5 text-xs font-semibold text-warm-accent backdrop-blur-sm">
+                      {cat.items.length} items
+                    </span>
+                  </div>
+                </div>
+
+                {/* Items list */}
+                <div className="grid gap-px bg-white/[0.02] sm:grid-cols-2 lg:grid-cols-3">
                   {cat.items.map((item) => (
                     <div
                       key={`${cat.category}-${item.name}`}
-                      className="flex items-center justify-between rounded-xl bg-white/[0.03] px-4 py-3 transition hover:bg-white/[0.07]"
+                      className="flex items-center justify-between bg-white/[0.02] px-5 py-3 transition hover:bg-white/[0.06]"
                     >
-                      <span className="text-sm text-white/80">
-                        {item.name}
-                      </span>
+                      <span className="text-sm text-white/80">{item.name}</span>
                       <span className="ml-4 shrink-0 rounded-full bg-warm-accent/15 px-2.5 py-0.5 text-xs font-bold text-warm-accent">
-                        {item.price === "-" || item.price === "ASP"
-                          ? item.price
-                          : `AED ${item.price}`}
+                        {item.price === "-" || item.price === "ASP" ? item.price : `AED ${item.price}`}
                       </span>
                     </div>
                   ))}
