@@ -1,4 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
+import MenuSection from "../components/MenuSection";
 import {
   Phone,
   MapPin,
@@ -17,11 +18,6 @@ import {
 import { useState, useEffect } from "react";
 
 import heroBg from "../assets/hero-bg.jpg";
-import menuTea from "../assets/menu-tea.jpg";
-import menuCutlet from "../assets/menu-cutlet.jpg";
-import menuPorotta from "../assets/menu-porotta.jpg";
-import menuBiryani from "../assets/menu-biryani.jpg";
-import menuSnacks from "../assets/menu-snacks.jpg";
 
 export const Route = createFileRoute("/")({
   component: Index,
@@ -227,71 +223,6 @@ function AboutSection() {
   );
 }
 
-/* ───── Menu Section ───── */
-const menuItems = [
-  { name: "Karak Tea", desc: "Strong, sweet & milky chai", price: "AED 1", img: menuTea },
-  { name: "Cutlet", desc: "Crispy golden Kerala cutlets", price: "AED 3", img: menuCutlet },
-  { name: "Porotta & Curry", desc: "Flaky layered bread with curry", price: "AED 8", img: menuPorotta },
-  { name: "Biryani", desc: "Fragrant Malabar-style biryani", price: "AED 15", img: menuBiryani },
-  { name: "Kerala Snacks", desc: "Pazham Nirachathu, Vatta Appam & more", price: "AED 5", img: menuSnacks },
-];
-
-function MenuSection() {
-  return (
-    <section id="menu" className="bg-warm-dark py-20 md:py-28">
-      <div className="mx-auto max-w-6xl px-4 md:px-8">
-        <div className="text-center">
-          <span className="text-xs font-bold uppercase tracking-[0.2em] text-warm-accent">Our Menu</span>
-          <h2
-            className="mt-2 text-3xl font-black text-white sm:text-4xl md:text-5xl"
-            style={{ fontFamily: "'Playfair Display', serif" }}
-          >
-            Taste the <span className="text-warm-accent">Favourites</span>
-          </h2>
-        </div>
-
-        <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {menuItems.map((item) => (
-            <div
-              key={item.name}
-              className="group overflow-hidden rounded-2xl bg-white/5 backdrop-blur-sm transition hover:bg-white/10"
-            >
-              <div className="aspect-[4/3] overflow-hidden">
-                <img
-                  src={item.img}
-                  alt={item.name}
-                  loading="lazy"
-                  width={512}
-                  height={512}
-                  className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110"
-                />
-              </div>
-              <div className="p-5">
-                <div className="flex items-center justify-between">
-                  <h3 className="text-lg font-bold text-white">{item.name}</h3>
-                  <span className="rounded-full bg-warm-accent/20 px-3 py-0.5 text-sm font-bold text-warm-accent">
-                    {item.price}
-                  </span>
-                </div>
-                <p className="mt-1 text-sm text-white/60">{item.desc}</p>
-              </div>
-            </div>
-          ))}
-        </div>
-
-        <div className="mt-10 text-center">
-          <a
-            href="tel:065728525"
-            className="inline-flex items-center gap-2 rounded-full border-2 border-warm-accent/30 px-6 py-3 text-sm font-bold text-warm-accent transition hover:bg-warm-accent/10"
-          >
-            <Phone size={16} />
-            Call for Full Menu
-          </a>
-        </div>
-      </div>
-    </section>
-  );
-}
 
 /* ───── Why Choose Us ───── */
 const reasons = [
